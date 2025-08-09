@@ -1,8 +1,7 @@
-import { Link } from "expo-router";
+import { Link, Tabs } from "expo-router";
 import { Text, View } from "react-native";
-import onboarding from "./onboarding";
 
-export default function Index() {
+export default function Home() {
   return (
     <View
       style={{
@@ -12,7 +11,6 @@ export default function Index() {
       }}
     >
       <Text className="text-5xl text-accent font-bold">Hello! </Text>
-      <Link href="/onboarding">Onboarding</Link>
     </View>
   );
 }
