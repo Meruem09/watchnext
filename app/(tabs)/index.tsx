@@ -1,16 +1,17 @@
-import { Link, Tabs } from "expo-router";
-import { Text, View } from "react-native";
+import { icons } from "@/constants/icons";
+import { images } from "@/constants/images";
+import { Text, View, Image, ScrollView} from "react-native";
 
 export default function Home() {
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Text className="text-5xl text-accent font-bold">Hello! </Text>
-    </View>
+   <View className="flex-1 bg-primary">
+      <Image source={images.bg} className="absolute w-full z-0"/>
+  
+      <ScrollView className="flex-1 px-5"
+        showsVerticalScrollIndicator={false} contentContainerStyle={{minHeight:"100%", paddingBottom: 10 }}
+      >
+        <Image source={icons.logo} className="w-12 h-10 mt-20 mb-5 mx-auto"/>
+      </ScrollView> 
+   </View>
   );
 }
