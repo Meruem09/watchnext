@@ -1,9 +1,9 @@
 export const TMBC_CONFIG = {
     BASE_URL: "https://api.themoviedb.org/3",
-    API_KEY: process.env.PUBLIC_MOVIE_API_KEY,
+    API_KEY: process.env.EXPO_PUBLIC_MOVIE_API_KEY,
     headers: {
         accept: "application/json", 
-        Authorization: `Bearer ${process.env.PUBLIC_MOVIE_API_KEY}`
+        Authorization: `Bearer ${process.env.EXPO_PUBLIC_MOVIE_API_KEY}`
     }
 }
 
@@ -23,7 +23,7 @@ export const fetchMovies = async ({query} : {query: string}) => {
     }
 
     const data = await response.json()
-    return data.result;
+    return data.results;
 }
 
 
