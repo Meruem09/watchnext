@@ -1,7 +1,6 @@
-import { View, Text, TouchableOpacity } from 'react-native'
+import { View, Text, TouchableOpacity,Image } from 'react-native'
 import React from 'react'
 import { Link } from 'expo-router'
-import {  Image } from "react-native";
 import { icons } from '@/constants/icons';
 
 const MovieCard = ({id, poster_path, title, vote_average, release_date, adult}: Movie) => {
@@ -31,8 +30,7 @@ const MovieCard = ({id, poster_path, title, vote_average, release_date, adult}: 
                     Movie
                 </Text>
             </View>
-            <View>
-                
+            <View> 
                 <Text className='text-xs font-medium text-light-300 mt-1'>
                     {adult ? 'Adult' : null}
                 </Text>

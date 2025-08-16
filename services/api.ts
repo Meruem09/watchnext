@@ -26,5 +26,22 @@ export const fetchMovies = async ({query} : {query: string}) => {
     return data.results;
 }
 
+export const fetchMovieDetails = async (movieId: string): Promise<MovieDetails> => {
+    try{
+       const response = await fetch(`${TMBC_CONFIG.BASE_URL}/movie/${movieId}`,{
+        method: 'GET',
+        headers: TMBC_CONFIG.headers,
+       })
+
+       if(!response.ok) throw new Error('Failed to fetch movie data');
+       
+       const data = await response.json();
+       return data;
+
+    } catch(error){
+        console.error(error);
+        throw error;
+    }
+}
 
 
