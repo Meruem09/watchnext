@@ -12,6 +12,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { icons } from "@/constants/icons";
 import useFetch from "@/services/useFetch";
 import { fetchMovieDetails, fetchMovieVideos } from "@/services/api";
+import { useState } from "react";
+import YoutubePlay from "@/components/YoutubePlayer";
 
 interface MovieInfoProps {
   label: string;
@@ -28,6 +30,7 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 );
 
 const Details = () => {
+  const [isPlaying, setIsPlaying] = useState(false);
   const router = useRouter();
   const { id } = useLocalSearchParams();
 
@@ -51,23 +54,37 @@ const Details = () => {
   return (
     <View className="bg-primary flex-1">
       <ScrollView contentContainerStyle={{ paddingBottom: 80 }}>
-        <View>
-          <Image
-            source={{
-              uri: `https://image.tmdb.org/t/p/w500${movies?.poster_path}`,
-            }}
-            className="w-full h-[550px]"
-            resizeMode="stretch"
-          />
-
-          <TouchableOpacity className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center">
+        
+        {!isPlaying ? 
+          <View>
             <Image
-              source={icons.play}
-              className="w-6 h-7 ml-1"
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500${movies?.poster_path}`,
+              }}
+              className="w-full h-[550px]"
               resizeMode="stretch"
             />
-          </TouchableOpacity>
-        </View>
+
+            <TouchableOpacity 
+              className="absolute bottom-5 right-5 rounded-full size-14 bg-white flex items-center justify-center"
+              onPress={()=>setIsPlaying(true)}
+              >
+              <Image
+                source={icons.play}
+                className="w-6 h-7 ml-1"
+                resizeMode="stretch"
+              />
+            </TouchableOpacity>
+          </View> 
+          :
+          <View className="mt-10 w-full aspect-video">
+            <YoutubePlay
+              videoId={trailer?.key ?? ""}
+              
+            />
+          </View>
+        
+        }
 
         <View className="flex-col items-start justify-center mt-5 px-5">
           <Text className="text-white font-bold text-xl">{movies?.title}</Text>
