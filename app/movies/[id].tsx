@@ -11,7 +11,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { icons } from "@/constants/icons";
 import useFetch from "@/services/useFetch";
-import { fetchMovieDetails } from "@/services/api";
+import { fetchMovieDetails, fetchMovieVideos } from "@/services/api";
 
 interface MovieInfoProps {
   label: string;
@@ -34,6 +34,12 @@ const Details = () => {
   const { data: movies, loading } = useFetch(() =>
     fetchMovieDetails(id as string)
   );
+
+  const { data: videos } = useFetch(() =>
+    fetchMovieVideos(id as string)
+  );
+
+  const trailer =  videos?.results.find(v => v.type === "Trailer" && v.site === "YouTube");
 
   if (loading)
     return (

@@ -44,4 +44,22 @@ export const fetchMovieDetails = async (movieId: string): Promise<MovieDetails> 
     }
 }
 
+export const fetchMovieVideos = async (movieId: string): Promise<MovieVideos> => {
+    try{
+       const response = await fetch(`${TMBC_CONFIG.BASE_URL}/movie/${movieId}/videos`,{
+        method: 'GET',
+        headers: TMBC_CONFIG.headers,
+       })
+
+       if(!response.ok) throw new Error('Failed to fetch movie video');
+       
+       const data: MovieVideos = await response.json();
+       return data;
+
+    } catch(error){
+        console.error(error);
+        throw error;
+    }
+}
+
 
