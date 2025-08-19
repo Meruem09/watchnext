@@ -32,6 +32,7 @@ const MovieInfo = ({ label, value }: MovieInfoProps) => (
 
 const Details = () => {
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
   const router = useRouter();
   const { id } = useLocalSearchParams();
 
@@ -62,7 +63,7 @@ const Details = () => {
               source={{
                 uri: `https://image.tmdb.org/t/p/w500${movies?.poster_path}`,
               }}
-              className="w-full h-[550px]"
+              className="w-full h-[500px]"
               resizeMode="stretch"
             />
 
@@ -72,8 +73,8 @@ const Details = () => {
               >
               <Image
                 source={icons.play}
-                className="w-6 h-7 ml-1"
-                resizeMode="stretch"
+                style={{ width: 50, height: 50 }}
+                resizeMode="contain"
               />
             </TouchableOpacity>
           </View> 
@@ -90,8 +91,18 @@ const Details = () => {
         <View className="flex-col items-start justify-center mt-5 px-5">
           <View className="flex-row items-center justify-between mt-5 ">
             <Text className="text-white font-bold text-xl">{movies?.title}</Text>
-            <Image source={icons.save} className="w-6 h-6 ml-[50%]" />
-          </View>
+            { !isSaved ?
+              <TouchableOpacity onPress={() => setIsSaved(true)}>
+                <Image source={icons.save} className="ml-auto" style={{height:17, width:17}} resizeMode="contain"
+                />
+              </TouchableOpacity>
+              :
+              <TouchableOpacity onPress={() => setIsSaved(false)}>
+                <Image source={icons.save2} className="ml-auto" style={{height:16, width:16}} resizeMode="contain"
+                />
+              </TouchableOpacity>
+            }
+            </View>
 
 
           <View className="flex-row items-center gap-x-1 mt-2">
