@@ -14,6 +14,7 @@ import useFetch from "@/services/useFetch";
 import { fetchMovieDetails, fetchMovieVideos } from "@/services/api";
 import { useState } from "react";
 import YoutubePlay from "@/components/YoutubePlayer";
+import { images } from "@/constants/images";
 
 interface MovieInfoProps {
   label: string;
@@ -87,7 +88,12 @@ const Details = () => {
         }
 
         <View className="flex-col items-start justify-center mt-5 px-5">
-          <Text className="text-white font-bold text-xl">{movies?.title}</Text>
+          <View className="flex-row items-center justify-between mt-5 ">
+            <Text className="text-white font-bold text-xl">{movies?.title}</Text>
+            <Image source={icons.save} className="w-6 h-6 ml-[50%]" />
+          </View>
+
+
           <View className="flex-row items-center gap-x-1 mt-2">
             <Text className="text-light-200 text-sm">
               {movies?.release_date?.split("-")[0]} •
