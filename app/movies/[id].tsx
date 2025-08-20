@@ -91,18 +91,7 @@ const Details = () => {
         <View className="flex-col items-start justify-center mt-5 px-5">
           <View className="flex-row items-center justify-between mt-5 ">
             <Text className="text-white font-bold text-xl">{movies?.title}</Text>
-            { !isSaved ?
-              <TouchableOpacity onPress={() => setIsSaved(true)}>
-                <Image source={icons.save} className="ml-auto" style={{height:17, width:17}} resizeMode="contain"
-                />
-              </TouchableOpacity>
-              :
-              <TouchableOpacity onPress={() => setIsSaved(false)}>
-                <Image source={icons.save2} className="ml-auto" style={{height:16, width:16}} resizeMode="contain"
-                />
-              </TouchableOpacity>
-            }
-            </View>
+          </View>
 
 
           <View className="flex-row items-center gap-x-1 mt-2">
