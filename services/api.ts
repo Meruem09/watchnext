@@ -51,7 +51,7 @@ export const fetchMovieVideos = async (movieId: string): Promise<MovieVideos> =>
         headers: TMBC_CONFIG.headers,
        })
 
-       if(!response.ok) throw new Error('Failed to fetch movie video');
+       if(!response.ok) throw new Error('Failed to fetch movie videos');
        
        const data: MovieVideos = await response.json();
        return data;
