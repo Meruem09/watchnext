@@ -33,7 +33,7 @@ export const fetchMovieDetails = async (movieId: string): Promise<MovieDetails> 
         headers: TMBC_CONFIG.headers,
        })
 
-       if(!response.ok) throw new Error('Failed to fetch movie data');
+       if(!response.ok) throw new Error('Failed to fetch movies data');
        
        const data = await response.json();
        return data;
